@@ -16,8 +16,9 @@ import org.springframework.stereotype.Service;
 }, useDefaultFilters = false)
 @ComponentScans(value = {
         @ComponentScan(value = "com.chent57", includeFilters = {
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Repository.class}),
-                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {BookService.class}),
+                //@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Repository.class}),
+                //@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {BookService.class}),
+                @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyTypeFilter.class})
         }, useDefaultFilters = false)
 })
 // 自定义规则过滤
