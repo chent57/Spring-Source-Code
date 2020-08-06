@@ -17,4 +17,19 @@ public class MainConfig2 {
         System.out.println("给容器中添加Person");
         return new Person("alice", 25);
     }
+
+
+
+    // @Conditional:按照一定条件进行判断，满足条件给容器中注册bean
+    // 如果是Window，给容器中注册bill
+    // 如果是linux，给容器注册linus
+    @Bean("bill")
+    public Person person1() {
+        return new Person("Bill Gates", 62);
+    }
+
+    @Bean("linus")
+    public Person person2() {
+        return new Person("linus", 48);
+    }
 }

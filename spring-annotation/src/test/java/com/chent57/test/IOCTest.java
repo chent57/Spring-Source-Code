@@ -1,15 +1,19 @@
 package com.chent57.test;
 
+import com.chent57.bean.Person;
 import com.chent57.config.MainConfig;
 
 import com.chent57.config.MainConfig2;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 
 import java.util.*;
 
 public class IOCTest {
+    AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+
 
     @Test
     public void test01() {
@@ -34,5 +38,20 @@ public class IOCTest {
         Object bean1 = applicationContext.getBean("person");
         Object bean2 = applicationContext.getBean("person");
         System.out.println(bean1 == bean2);
+    }
+
+    @Test
+    public void test03() {
+        // 获取IOC容器环境(Mac OS X)
+        ConfigurableEnvironment configurableEnvironment = applicationContext.getEnvironment();
+        System.out.println(configurableEnvironment.getProperty("os.name"));
+
+        String[] namesForType = applicationContext.getBeanNamesForType(Person.class);
+        for (String name : namesForType) {
+            System.out.println(name);
+        }
+
+        Map<String, Person> personMap = applicationContext.getBeansOfType(Person.class);
+        System.out.println(personMap);
     }
 }
