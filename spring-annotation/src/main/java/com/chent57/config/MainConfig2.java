@@ -1,10 +1,9 @@
 package com.chent57.config;
 
 import com.chent57.bean.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import com.chent57.condition.MacCondition;
+import com.chent57.condition.WindowCondition;
+import org.springframework.context.annotation.*;
 
 @Configuration
 public class MainConfig2 {
@@ -23,13 +22,15 @@ public class MainConfig2 {
     // @Conditional:按照一定条件进行判断，满足条件给容器中注册bean
     // 如果是Window，给容器中注册bill
     // 如果是linux，给容器注册linus
+    @Conditional(WindowCondition.class)
     @Bean("bill")
     public Person person1() {
         return new Person("Bill Gates", 62);
     }
 
-    @Bean("linus")
+    @Conditional(MacCondition.class)
+    @Bean("jobs")
     public Person person2() {
-        return new Person("linus", 48);
+        return new Person("jobs", -1);
     }
 }
