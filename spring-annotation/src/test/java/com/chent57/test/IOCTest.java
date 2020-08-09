@@ -1,5 +1,6 @@
 package com.chent57.test;
 
+import com.chent57.bean.Blue;
 import com.chent57.bean.Person;
 import com.chent57.config.MainConfig;
 
@@ -59,6 +60,9 @@ public class IOCTest {
     @Test
     public void test04_Import() {
         printBeans(applicationContext);
+        Blue blue = applicationContext.getBean(Blue.class);
+        System.out.println(blue);
+
     }
 
     private void printBeans(AnnotationConfigApplicationContext applicationContext) {
