@@ -1,11 +1,14 @@
 package com.chent57.config;
 
+import com.chent57.bean.Color;
 import com.chent57.bean.Person;
+import com.chent57.bean.Red;
 import com.chent57.condition.MacCondition;
 import com.chent57.condition.WindowCondition;
 import org.springframework.context.annotation.*;
 
 @Configuration
+@Import({Color.class, Red.class}) // 导入组件，id默认是组件的全类名
 public class MainConfig2 {
 
     //@Scope("prototype")
@@ -33,4 +36,10 @@ public class MainConfig2 {
     public Person person2() {
         return new Person("jobs", -1);
     }
+
+
+    // 给容器注册组件：
+    // 1. 包扫描 + 组件标注注解(@Controller, @Service, @Repository, @Component) -> 局限性：第三方包没加注解，只能用自己写的
+    // 2. @Bean(导入第三方包里面的组件)
+    // 3. @Import(快速给容器中导入一个组件)
 }
