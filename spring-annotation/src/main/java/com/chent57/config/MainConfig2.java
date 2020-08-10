@@ -4,12 +4,13 @@ import com.chent57.bean.Color;
 import com.chent57.bean.Person;
 import com.chent57.bean.Red;
 import com.chent57.condition.MacCondition;
+import com.chent57.condition.MyImportBeanDefinitionRegistrar;
 import com.chent57.condition.MyImportSelector;
 import com.chent57.condition.WindowCondition;
 import org.springframework.context.annotation.*;
 
 @Configuration
-@Import({Color.class, Red.class, MyImportSelector.class}) // 导入组件，id默认是组件的全类名
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class}) // 导入组件，id默认是组件的全类名
 public class MainConfig2 {
 
     //@Scope("prototype")
@@ -44,5 +45,6 @@ public class MainConfig2 {
     // 2. @Bean(导入第三方包里面的组件)
     // 3. @Import(快速给容器中导入一个组件)
     //    3.1. @Import（要导入到容器中的组件: 容器中就会自动注册这个组件，id默认是全类名
-    //    3.2. ImportSelector: 返回需要导入的组件
+    //    3.2. ImportSelector: 返回需要导入的组件（这个用的比较多）
+    //    3.3. ImportBeanDefinitionRegistrar：手动注册Bean到容器中
 }
