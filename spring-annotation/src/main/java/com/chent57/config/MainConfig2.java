@@ -1,6 +1,7 @@
 package com.chent57.config;
 
 import com.chent57.bean.Color;
+import com.chent57.bean.ColorFactoryBean;
 import com.chent57.bean.Person;
 import com.chent57.bean.Red;
 import com.chent57.condition.MacCondition;
@@ -47,4 +48,11 @@ public class MainConfig2 {
     //    3.1. @Import（要导入到容器中的组件: 容器中就会自动注册这个组件，id默认是全类名
     //    3.2. ImportSelector: 返回需要导入的组件（这个用的比较多）
     //    3.3. ImportBeanDefinitionRegistrar：手动注册Bean到容器中
+    // 4. 使用Spring提供的FactoryBean（工厂Bean）
+    //    4.1. 默认获取到的是工厂bean调用getObject创建的对象
+    //    4.2. 要获取工厂bean本身，需要给id前面加一个&
+    @Bean
+    public ColorFactoryBean colorFactoryBean() {
+        return new ColorFactoryBean();
+    }
 }
