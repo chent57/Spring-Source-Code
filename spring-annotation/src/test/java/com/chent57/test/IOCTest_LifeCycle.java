@@ -13,7 +13,7 @@ public class IOCTest_LifeCycle {
         System.out.println("容器创建完成...");
 
         // 获取bean
-        applicationContext.getBean("car");
+        //applicationContext.getBean("car");
 
         // 2. 关闭容器
         applicationContext.close();

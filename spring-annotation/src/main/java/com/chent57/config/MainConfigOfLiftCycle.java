@@ -14,12 +14,15 @@ package com.chent57.config;
 
 
 // 1. 指定初始化销毁方法：通过@Bean注解，指定init-method和destory-method
+// 2. 通过让Bean实现InitializingBean（定义初始化逻辑），DisposableBean（定义销毁逻辑）
 
 import com.chent57.bean.Car;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+@ComponentScan("com.chent57.bean")
 @Configuration
 public class MainConfigOfLiftCycle {
     //@Scope("prototype")
