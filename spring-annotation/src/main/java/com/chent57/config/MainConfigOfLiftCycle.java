@@ -16,8 +16,14 @@ package com.chent57.config;
 // 1. 指定初始化销毁方法：通过@Bean注解，指定init-method和destory-method
 // 2. 通过让Bean实现InitializingBean（定义初始化逻辑），DisposableBean（定义销毁逻辑）
 // 3. 使用JSR250， @PostConstruct（在Bean创建完成并且属性赋值完成，来执行初始化）和@PreDestory（在容器销毁Bean之前通知进行清理工作）
+// 4. BeanPostProcessor: bean的后置处理器。在bean初始化前后进行一些处理工作。postProcessBeforeInitialization：在初始化之前工作， postProcessAfterInitialization在初始化之后工作
 
+
+
+// BeanPostProcessor-后置处理器原理： 遍历得到容器中所有的BeanPostProcessor，挨个执行beforeInitialization。一旦返回null，跳出for循环，不会执行后面的BeanPostProcessor。
+// populateBean：给bean进行属性赋值
 import com.chent57.bean.Car;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
