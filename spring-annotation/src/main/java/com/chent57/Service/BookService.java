@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
-    @Qualifier("bookDao2")
-    @Autowired
+    //@Qualifier("bookDao2")
+    @Autowired(required = false)
     private BookDao bookDao;
 
     public void print() {
