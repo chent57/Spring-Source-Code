@@ -15,6 +15,12 @@ import org.springframework.context.annotation.Primary;
 //  (5) @Primary：让Spring进行自动装配的时候，默认使用首选的bean。也可以继续使用@Qualifier指定需要装配的bean的名字
 
 
+// 2. Spring还支持使用@Resource（JSR250）和 @Inject（JSR330-java规范注解）
+//  （1）@Resource：可以和@Autowired一样实现自动装配功能，默认是按照组件名称进行装配。不支持@primary功能及@Autowired（require = false）
+//   (2) 需要导入javax.inject的包，和@Autowired的功能一样。没有requied=false的功能
+
+// AutowiredAnnotationBeanPostProcessor:解析完成自动装配功能
+
 @Configuration
 @ComponentScan({"com.chent57.Service", "com.chent57.Controller", "com.chent57.Dao"})
 public class MainConfigOfAutowired {
