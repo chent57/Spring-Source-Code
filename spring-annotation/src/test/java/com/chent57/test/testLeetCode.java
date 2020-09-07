@@ -2,9 +2,8 @@ package com.chent57.test;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class testLeetCode {
 
@@ -40,7 +39,57 @@ public class testLeetCode {
         }
     }
     @Test
-    public void test() {
+    public void test_computeIfAbsent() {
+        Map<String, String> map = new HashMap<>();
+        //map.put("test", "test");
+        String res = map.computeIfAbsent("test", x -> "value");
+        System.out.println(res);
+        System.out.println(map.toString());
+
+
+        map.computeIfAbsent("test", x -> "value1");
+        System.out.println(map.toString());
+    }
+
+
+
+    public static void main(String[] s) {
+        Map<String, Boolean> whoLetDogsOut = new ConcurrentHashMap<>();
+        whoLetDogsOut.computeIfAbsent("snoop", k -> f(k));
+        whoLetDogsOut.computeIfAbsent("snoop", k -> f(k));
+    }
+    static boolean f(String s) {
+        System.out.println("creating a value for \""+s+'"');
+        return s.isEmpty();
+    }
+
+
+    public class TreeNode {
+         int val;
+         TreeNode left;
+         TreeNode right;
+         TreeNode(int x) { val = x; }
+    }
+
+    @Test
+    public void test_Tree() {
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(5);
+        TreeNode node6 = new TreeNode(6);
+
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = null;
+        node2.right = node5;
+        node3.left = null;
+        node3.right = null;
+
+
+        Stack<TreeNode> stack = new Stack<>();
+
 
     }
 }
