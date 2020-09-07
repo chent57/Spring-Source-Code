@@ -1,19 +1,11 @@
 package com.chent57.test;
 
-import com.chent57.Dao.BookDao;
-import com.chent57.Service.BookService;
 import com.chent57.bean.Boss;
 import com.chent57.bean.Car;
 import com.chent57.bean.Color;
 import com.chent57.config.MainConfigOfAutowired;
-import com.chent57.config.MainConfigOfLiftCycle;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class IOCTest_Autowired {
 
