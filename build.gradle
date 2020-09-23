@@ -1,24 +1,108 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.14.RELEASE")
+        classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.1.0")
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.3.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
-repositories {
-    mavenCentral()
-}
+allprojects {
+    group "com.example"
+    version "1.0"
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    apply plugin: "java-library"
+    apply plugin: "maven"
+    apply plugin: "idea"
+    apply plugin: "eclipse"
+
+    // jdk version
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+
+    repositories {
+        mavenLocal()
+        // jms.jar
+        //maven { url "http://repository.jboss.org/nexus/content/groups/public/"}
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        // "org.ethereum.solcJ-all-0.4.25"
+        // maven { url "https://dl.bintray.com/ethereum/maven/" }
+        //maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        mavenCentral()
+        jcenter()
+    }
+
+    // encoding type
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = "UTF-8"
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ["src/main/java"]
+            }
+            resources {
+                srcDirs = ["src/main/resources"]
+            }
+        }
+        test {
+            java {
+                srcDirs = ["src/test/java"]
+            }
+            resources {
+                srcDirs = ["src/test/resources"]
+            }
+        }
+    }
+
+    clean.doLast {
+        file("dist/apps/").deleteDir()
+        file("dist/conf/").deleteDir()
+        file("dist/lib/").deleteDir()
+    }
+
+    configurations.all {
+        // exclude spring-boot's default logger logback
+        //exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+
+        resolutionStrategy {
+            // fix security bug
+        }
+    }
+
+    // all project common lib
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+        // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.2'
     }
 }
 
 test {
     useJUnitPlatform()
+}
+
+bootJar {
+    enabled = false
 }

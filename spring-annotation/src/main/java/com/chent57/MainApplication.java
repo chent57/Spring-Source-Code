@@ -5,7 +5,7 @@ import com.chent57.config.MainConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class MainTest {
+public class MainApplication {
 
     public static void main(String[] args) {
         //
