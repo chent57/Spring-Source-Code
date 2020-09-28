@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 // 后置处理器: 初始化前后进行处理工作
-// 讲后置处理器加入到容器中
+// 将后置处理器加入到容器中
 
 @Component
 public class MyBeanPostProcessor implements BeanPostProcessor {

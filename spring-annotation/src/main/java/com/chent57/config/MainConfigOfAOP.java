@@ -39,7 +39,7 @@ package com.chent57.config;
 *               ->AbstractAdvisorAutoProxyCreator
 *                   ->AbstractAutoProxyCreator
 *                       ->implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware
-*                       关注后置处理器（在bean初始化完成前后做的事情）、自动转配beanFactory
+*                       关注后置处理器（在bean初始化完成前后做的事情）、自动装配beanFactory
 *
  *
 *
