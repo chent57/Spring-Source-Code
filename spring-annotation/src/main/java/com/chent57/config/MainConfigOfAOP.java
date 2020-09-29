@@ -41,8 +41,19 @@ package com.chent57.config;
 *                       ->implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware
 *                       关注后置处理器（在bean初始化完成前后做的事情）、自动装配beanFactory
 *
- *
+* AbstractAutoProxyCreator.setBeanFactory()
+* AbstractAutoProxyCreator.postProcessBeforeInstantiation 有后置处理器的逻辑（postProcessxxx）
 *
+*
+* AbstractAdvisorAutoProxyCreator.setBeanFactory() -> initBeanFactory() // 重写
+* AbstractAdvisorAutoProxyCreator 没有后置处理器逻辑
+*
+*
+* AspectJAwareAdvisorAutoProxyCreator 与Bean和postProcessxxx无关
+*
+*
+* AnnotationAwareAspectJAutoProxyCreator.initBeanFactory() // 重写
+* AnnotationAwareAspectJAutoProxyCreator没有后置处理器逻辑
 *
 * */
 
