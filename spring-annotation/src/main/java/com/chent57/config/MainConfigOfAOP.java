@@ -29,7 +29,7 @@ package com.chent57.config;
 * @EnableAspectJAutoProxy
 * 1. @EnableAspectJAutoProxy是什么？
 *       @Import(AspectJAutoProxyRegistrar.class)：给容器导入AspectJAutoProxyRegistrar
-*       利用AspectJAutoProxyRegistrar自定义给容器中注册Bean；
+*       利用AspectJAutoProxyRegistrar自定义给容器中注册Bean；BeanDefinition
 *       internalAutoProxyCreator = AnnotationAwareAspectJAutoProxyCreator
 *       给容器中注册一个AnnotationAwareAspectJAutoProxyCreator；
 *
@@ -54,6 +54,17 @@ package com.chent57.config;
 *
 * AnnotationAwareAspectJAutoProxyCreator.initBeanFactory() // 重写
 * AnnotationAwareAspectJAutoProxyCreator没有后置处理器逻辑
+*
+* 流程：
+*   （1）传入配置类，创建IOC容器
+*   （2）注册配置类，调用refresh刷新容器
+*   （3）registerBeanPostProcessors(beanFactory)；注册Bean的后置处理器，来方便拦截Bean的创建
+*           ①先获取IOC容器以及定义了的需要创建对象的所有BeanPostProcessors
+*           ②给容器中加别的BeanPostProcessor
+*           ③优先注册实现了PriorityOrdered接口的的BeanPostProcessor
+*           ④再给容器中注册实现了Ordered接口的BeanPostProcessor
+*           ⑤最后给注册没实现优先级接口的BeanPostProcessor
+*           ⑥注册BeanPostProcessor，实际就是创建BeanPostProcessor对象，保存到容器中
 *
 * */
 
