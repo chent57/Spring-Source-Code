@@ -65,6 +65,18 @@ package com.chent57.config;
 *           ④再给容器中注册实现了Ordered接口的BeanPostProcessor
 *           ⑤最后给注册没实现优先级接口的BeanPostProcessor
 *           ⑥注册BeanPostProcessor，实际就是创建BeanPostProcessor对象，保存到容器中
+*               创建internalAutoProxyCreator的BeanPostProcessor[AnnotationAwareAspectJAutoProxyCreator]
+*               1. 创建Bean的实例
+*               2. populateBean：给Bean的各种属性赋值
+*               3. initializeBean：初始化Bean
+*                   1). invokeAwareMethods():处理Aware接口的方法回调
+*                   2). applyBeanPostProcessorsBeforeInitialization():应用后置处理器的postProcessBeforeInitialization()
+*                   3). invokeInitMethods():执行自定义的初始化方法
+*                   4). applyBeanPostProcessorsAfterInitialization():执行后置处理器的postProcessAfterInitialization()
+*               4. BeanPostProcessor(AnnotationAwareAspectJAutoProxyCreator)创建成功 -> AspectJAdvisorsBuilder
+*           ⑦把BeanPostProcessor注册到BeanFactory中：beanFactory.addBeanPostProcessor(postProcessor);
+*
+*
 *
 * */
 
