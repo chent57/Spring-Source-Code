@@ -594,7 +594,103 @@ public class testLeetCode {
 
     @Test
     public void test08() {
+        String s = "9223372036854775808";
 
+        int ret = myAtoi(s);
+        System.out.println(ret);
+    }
+
+    public int myAtoi(String s) {
+
+        if (s.length() == 0) {
+            return 0;
+        }
+        long ret = 0L;
+        char[] charArray = s.toCharArray();
+
+        // 正负号
+        int symbol = 0;
+
+        boolean nums = false;
+
+        int i = 0;
+
+        // 丢弃头部空格
+        for (; i < s.length(); i++) {
+            if (charArray[i] != ' ') {
+                break;
+            }
+        }
+
+        if (i == s.length()) {
+            return 0;
+        }
+
+        // 第一个不是正负号和数字
+        if (charArray[i] == '+' || charArray[i] == '-' || (charArray[i] - '0' >= 0 && charArray[i] - '0' <= 9)) {
+            for (; i < s.length(); i++) {
+                // 正负号
+                if (charArray[i] == '+' || charArray[i] == '-') {
+                    // 后面又出现正负号, 或者前面有数字后面又出现符号
+                    if (symbol != 0 || nums == true) {
+                        break;
+                    }
+
+                    if (charArray[i] == '+') {
+                        symbol = 1;
+                    } else {
+                        symbol = 2;
+                    }
+                    continue;
+                    // 是数字
+                } else if (charArray[i] - '0' >= 0 && charArray[i] - '0' <= 9) {
+                    nums = true;
+                    ret = ret * 10 + (charArray[i] - '0');
+                    if (ret > Integer.MAX_VALUE) {
+                        return Integer.MAX_VALUE;
+                    } else if (ret < Integer.MIN_VALUE) {
+                        return Integer.MIN_VALUE;
+                    }
+                } else {
+                    break;
+                }
+            }
+        } else {
+            return 0;
+        }
+
+        // 取符号
+        if (symbol == 2) {
+            ret = 0 - ret;
+        }
+
+        // 溢出情况分析
+        if (ret > Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        } else if (ret < Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else {
+            return (int)ret;
+        }
+
+    }
+
+
+    @Test
+    public void test43() {
+        boolean carry = true;
+        int sum = 15;
+
+        char c = (char)('0' + (sum%10) + (carry == true ? 1 : 0));
+
+        System.out.println(c);
+    }
+
+    @Test
+    public void test164() {
+        int[] nums = new int[10];
+
+        Arrays.sort(nums);
     }
 
 
