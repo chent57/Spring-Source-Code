@@ -1,0 +1,14 @@
+Porg.springframework.context.annotation.internalConfigurationAnnotationProcessor
+Lorg.springframework.context.annotation.internalAutowiredAnnotationProcessor
+Iorg.springframework.context.annotation.internalCommonAnnotationProcessor
+Aorg.springframework.context.event.internalEventListenerProcessor
+?org.springframework.context.event.internalEventListenerFactory
+mainConfig2
+com.chent57.bean.Color
+com.chent57.bean.Red
+com.chent57.bean.Blue
+com.chent57.bean.Yellow
+person
+jobs
+rainBow
+com.chent57.bean.Blue@d7c344

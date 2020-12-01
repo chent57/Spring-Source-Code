@@ -693,6 +693,78 @@ public class testLeetCode {
         Arrays.sort(nums);
     }
 
+    @Test
+    public void test767() throws InterruptedException {
+        String S = "aaab";
+        System.out.println("result:" + reorganizeString(S));
+
+    }
+
+    public String reorganizeString(String S) throws InterruptedException {
+        int len = S.length();
+        int[] nums = new int[26];
+        char[] charArray = S.toCharArray();
+        for (int i = 0; i < len; i++) {
+            nums[charArray[i] - 'a']++;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        char lastChar = ' ';
+        while (len !=0) {
+            for (int i = 0; i < 26; i++) {
+                if (nums[i] > 0) {
+                    if (lastChar != ' ' && lastChar == (char)('a' + i)) {
+                        return "";
+                    }
+                    sb.append((char)('a' + i));
+                    nums[i]--;
+                    len--;
+                    lastChar = (char)('a' + i);
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+
+    @Test
+    public void test34() {
+//        int[] nums = {5,7,7,8,8,10};
+        int[] nums = {6,7,7,8,8,10};
+        int target = 10;
+
+        int len = nums.length;
+        int start = Integer.MAX_VALUE, end = Integer.MAX_VALUE;
+        if (len == 0) {
+            start = -1;
+            end = -1;
+        }
+
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == target && start == Integer.MAX_VALUE) {
+                start = i;
+            }
+            if (nums[i] == target) {
+                end = i;
+            }
+        }
+
+        if (start == Integer.MAX_VALUE) {
+            start = -1;
+            end = -1;
+        }
+
+        int[] res = {start, end};
+
+
+        for (int i = 0; i < res.length; i++) {
+            System.out.println(res[i]);
+        }
+
+
+    }
+
+
 
 
 
