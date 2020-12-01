@@ -730,8 +730,10 @@ public class testLeetCode {
     @Test
     public void test34() {
 //        int[] nums = {5,7,7,8,8,10};
+        /*
         int[] nums = {6,7,7,8,8,10};
-        int target = 10;
+        int target = 9;
+
 
         int len = nums.length;
         int start = Integer.MAX_VALUE, end = Integer.MAX_VALUE;
@@ -760,6 +762,41 @@ public class testLeetCode {
         for (int i = 0; i < res.length; i++) {
             System.out.println(res[i]);
         }
+         */
+
+        int[] nums = {2,2};
+        int target = 2;
+
+        int left = 0;
+        int right = nums.length;
+        while (left < right) {
+            int mid = (left + right)/2;
+            if (nums[mid] == target) {
+                right = mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid;
+            }
+        }
+        if (left >= nums.length || nums[left] != target) {
+            int[] res = {-1, -1};
+            System.out.println("11111");
+        }
+
+        if (left == 0 && nums[0] != target) {
+            int[] res = {-1, -1};
+            System.out.println("22222");
+        }
+
+        for (int i = left; i < nums.length; i++) {
+            if (nums[i] == target) {
+                right = i;
+            }
+        }
+
+        System.out.println(left);
+        System.out.println(right);
 
 
     }
