@@ -4,7 +4,7 @@ buildscript {
     }
     repositories {
         maven {
-              url "http://maven.aliyun.com/nexus/content/groups/public/"
+              url "https://maven.aliyun.com/nexus/content/groups/public/"
         }
 
         mavenCentral()//依赖Maven仓库
@@ -16,7 +16,7 @@ buildscript {
 }
 
 
-group 'decs-openapi'
+group 'spring-source-code'
 version '1.0'
 
 apply plugin: 'maven'
