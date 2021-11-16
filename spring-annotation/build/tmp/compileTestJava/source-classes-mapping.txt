@@ -1,2 +1,0 @@
-com/chent57/test/IOCTest.java
- com.chent57.test.IOCTest

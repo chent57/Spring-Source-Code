@@ -1,4 +1,0 @@
-rootProject.name = "Spring-Source-Code"
-
-include "spring-annotation"
-//include "spring-others"
