@@ -19,6 +19,8 @@ public class LogAspects {
      * 抽取公共的切入点表达式
      * 1. 如果在本类引用
      * 2. 其他的切面引用，则使用全名（com.chent57.aop.LogAspects.pointCut）
+     * 3. MathCalculator.* 表示这个类的任何方法
+     * 4. (..)表示任意的参数
      */
     @Pointcut("execution(public int com.chent57.aop.MathCalculator.*(..))")
     public void pointCut() {};
@@ -26,7 +28,7 @@ public class LogAspects {
 
     /**
      * @Before:在目标方法之前切入；切入点表达式（指定在那个方法切入）,指定类的所有方法用*,两个点表示不指定参数
-     * @param joinPoint jointpoint
+     * @param joinPoint JointPoint
      */
     @Before("pointCut()")
     public void logStart(JoinPoint joinPoint) { // JoinPoint必须在参数表第一位

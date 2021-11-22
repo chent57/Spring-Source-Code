@@ -86,16 +86,27 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-@EnableAspectJAutoProxy // 开启基于注解的AOP模式
+/**
+ * @author trentchen
+ */
+// 开启基于注解的AOP模式
+@EnableAspectJAutoProxy
 @Configuration
 public class MainConfigOfAOP {
-    // 业务逻辑加入到容器中
+
+    /**
+     * 业务逻辑加入到容器中
+     * @return bean
+     */
     @Bean
     public MathCalculator calculator() {
         return new MathCalculator();
     }
 
-    // 切面类加入到容器中
+    /**
+     * 切面类加入到容器中
+     * @return bean
+     */
     @Bean
     public LogAspects logAspects() {
         return new LogAspects();
